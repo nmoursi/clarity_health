@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clarify Health - AI-Powered Insurance Workflow Automation</title>
-    <meta name="description" content="Autonomous AI agents that manage the full insurance lifecycle - from eligibility to reimbursement. Healthcare operations reimagined.">
+    <title>Clarity Health - Autonomous AI for Healthcare Insurance Workflows</title>
+    <meta name="description" content="AI agents that autonomously manage insurance workflows from eligibility to reimbursement. Reduce denials, accelerate payments, eliminate admin burden.">
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #FF6B35;
@@ -39,17 +39,38 @@
         }
 
         body {
-            font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Outfit', -apple-system, sans-serif;
             color: var(--text);
             background: var(--bg);
-            line-height: 1.6;
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 107, 53, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(0, 217, 255, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 40% 70%, rgba(6, 255, 165, 0.05) 0%, transparent 40%);
+            z-index: -1;
+            animation: bgPulse 15s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 32px;
         }
 
         /* Navigation */
@@ -57,11 +78,11 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(250, 251, 252, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
+            background: rgba(10, 15, 30, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             z-index: 1000;
-            animation: slideDown 0.6s ease-out;
+            animation: slideDown 0.8s ease-out;
         }
 
         @keyframes slideDown {
@@ -79,58 +100,76 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 24px;
+            padding: 24px 32px;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-            letter-spacing: -0.5px;
+            font-size: 28px;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
         }
 
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 40px;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
-            color: var(--text);
+            color: var(--text-secondary);
             text-decoration: none;
             font-weight: 500;
             font-size: 15px;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--text);
         }
 
-        .cta-button {
-            background: var(--accent);
-            color: var(--primary);
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-nav {
+            background: var(--gradient-1);
+            color: white;
             padding: 12px 28px;
-            border-radius: 8px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 15px;
+            font-weight: 700;
+            font-size: 14px;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
         }
 
-        .cta-button:hover {
-            background: var(--accent-dark);
+        .cta-nav:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 217, 192, 0.3);
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5);
         }
 
         /* Hero Section */
         .hero {
-            padding: 160px 0 120px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            color: white;
+            padding: 180px 0 140px;
             position: relative;
             overflow: hidden;
         }
@@ -138,19 +177,31 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 217, 192, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(0, 217, 192, 0.1) 0%, transparent 50%);
-            animation: pulse 8s ease-in-out infinite;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
         }
 
         .hero .container {
@@ -159,14 +210,14 @@
         }
 
         .hero-content {
-            max-width: 800px;
-            animation: fadeInUp 0.8s ease-out;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -175,434 +226,892 @@
         }
 
         .hero-badge {
-            display: inline-block;
-            background: rgba(0, 217, 192, 0.2);
-            color: var(--accent);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-            margin-bottom: 24px;
-            border: 1px solid rgba(0, 217, 192, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 107, 53, 0.15);
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
         }
 
         h1 {
-            font-size: 64px;
-            font-weight: 700;
+            font-size: 72px;
+            font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 24px;
-            letter-spacing: -2px;
+            margin-bottom: 32px;
+            letter-spacing: -2.5px;
+            background: linear-gradient(135deg, #FFFFFF 0%, #B8C5DB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .hero p {
-            font-size: 22px;
+        .hero-highlight {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 24px;
             line-height: 1.6;
-            margin-bottom: 40px;
-            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 48px;
+            color: var(--text-secondary);
+            max-width: 800px;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 16px;
+            gap: 20px;
             flex-wrap: wrap;
         }
 
-        .button-primary {
-            background: var(--accent);
-            color: var(--primary);
-            padding: 16px 36px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .button-primary:hover {
-            background: var(--accent-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 28px rgba(0, 217, 192, 0.4);
-        }
-
-        .button-secondary {
-            background: transparent;
+        .btn-primary {
+            background: var(--gradient-1);
             color: white;
-            padding: 16px 36px;
-            border-radius: 10px;
+            padding: 18px 40px;
+            border-radius: 14px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-weight: 700;
+            font-size: 17px;
             transition: all 0.3s ease;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+            border: none;
         }
 
-        .button-secondary:hover {
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 107, 53, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 17px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--bg-card);
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 900;
+            font-family: 'Space Mono', monospace;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
         /* Section Styles */
         section {
-            padding: 100px 0;
-        }
-
-        section:nth-child(even) {
-            background: white;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px;
+            padding: 120px 0;
         }
 
         .section-label {
             color: var(--accent);
-            font-weight: 600;
+            font-weight: 700;
             font-size: 14px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            display: inline-block;
         }
 
         h2 {
-            font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 24px;
             line-height: 1.2;
-            letter-spacing: -1px;
+            letter-spacing: -1.5px;
         }
 
-        .section-header p {
-            font-size: 20px;
-            color: var(--text-light);
-            line-height: 1.6;
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 80px;
+        }
+
+        .section-description {
+            font-size: 22px;
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
 
         /* Problem Section */
         .problem-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 32px;
-            margin-top: 60px;
+            margin-top: 80px;
         }
 
         .problem-card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-            border-color: var(--accent);
-        }
-
-        .problem-icon {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            font-size: 28px;
-        }
-
-        .problem-card h3 {
-            font-size: 24px;
-            margin-bottom: 12px;
-            color: var(--primary);
-        }
-
-        .problem-card p {
-            color: var(--text-light);
-            line-height: 1.7;
-        }
-
-        .stat {
-            display: block;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--accent);
-            margin-top: 16px;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* Solution Section */
-        .solution-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-            margin-top: 60px;
-        }
-
-        .solution-visual {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            padding: 60px;
+            background: var(--bg-card);
+            padding: 48px;
             border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .solution-visual::before {
+        .problem-card::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 217, 192, 0.2) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .problem-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 107, 53, 0.3);
+            box-shadow: 0 20px 60px rgba(255, 107, 53, 0.2);
         }
 
-        .flow-diagram {
-            position: relative;
-            z-index: 1;
+        .problem-card:hover::before {
+            transform: scaleX(1);
         }
 
-        .flow-step {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 12px;
+        .problem-icon {
+            width: 72px;
+            height: 72px;
+            background: var(--gradient-1);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+            font-size: 36px;
+            box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
+        }
+
+        .problem-card h3 {
+            font-size: 26px;
             margin-bottom: 16px;
-            color: white;
-            font-weight: 500;
-            transition: all 0.3s ease;
+            font-weight: 800;
         }
 
-        .flow-step:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateX(8px);
-        }
-
-        .flow-arrow {
-            text-align: center;
-            color: var(--accent);
-            font-size: 24px;
-            margin: 8px 0;
-        }
-
-        .solution-text h3 {
-            font-size: 32px;
-            margin-bottom: 16px;
-            color: var(--primary);
-        }
-
-        .solution-text p {
-            font-size: 18px;
-            color: var(--text-light);
-            line-height: 1.7;
+        .problem-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 16px;
             margin-bottom: 24px;
         }
 
-        .feature-list {
-            list-style: none;
-            margin-top: 32px;
+        .problem-stat {
+            display: block;
+            font-size: 42px;
+            font-weight: 900;
+            font-family: 'Space Mono', monospace;
+            color: var(--primary);
+            margin-top: 20px;
         }
 
-        .feature-list li {
-            padding: 16px 0;
-            border-bottom: 1px solid var(--border);
+        .problem-detail {
+            background: rgba(255, 107, 53, 0.1);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 24px;
+        }
+
+        .problem-detail strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .problem-detail p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Solution Section */
+        .solution-showcase {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-top: 80px;
+        }
+
+        .solution-content h3 {
+            font-size: 38px;
+            margin-bottom: 24px;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .solution-content p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .feature-highlights {
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 20px;
+            padding: 24px;
+            background: rgba(0, 217, 255, 0.05);
+            border: 1px solid rgba(0, 217, 255, 0.15);
+            border-radius: 16px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(0, 217, 255, 0.08);
+            border-color: rgba(0, 217, 255, 0.3);
+            transform: translateX(8px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .feature-text p {
+            font-size: 15px;
+            margin: 0;
+            color: var(--text-muted);
+        }
+
+        .workflow-visual {
+            background: var(--bg-card);
+            padding: 48px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+        }
+
+        .workflow-step {
+            background: rgba(0, 217, 255, 0.08);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            padding: 24px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .workflow-step:hover {
+            background: rgba(0, 217, 255, 0.12);
+            transform: scale(1.02);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            width: 32px;
+            height: 32px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 14px;
+        }
+
+        .workflow-step-title {
+            font-weight: 700;
+            margin-bottom: 8px;
             font-size: 16px;
+            padding-left: 24px;
+        }
+
+        .workflow-step-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin: 0;
+            padding-left: 24px;
+        }
+
+        .workflow-arrow {
+            text-align: center;
+            color: var(--accent);
+            font-size: 28px;
+            margin: 8px 0;
+        }
+
+        /* Technology Section */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .tech-card {
+            background: var(--bg-card);
+            padding: 48px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .tech-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gradient-2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 32px;
+        }
+
+        .tech-card h3 {
+            font-size: 28px;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .tech-card p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .tech-details {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .tech-details li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 15px;
+            color: var(--text-secondary);
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
-        .feature-list li:last-child {
-            border-bottom: none;
+        .tech-details li::before {
+            content: '→';
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Comparison Section */
+        .comparison-table {
+            background: var(--bg-card);
+            border-radius: 24px;
+            overflow: hidden;
+            margin-top: 80px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 32px;
+            padding: 32px 48px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .comparison-row:first-child {
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .comparison-row:hover:not(:first-child) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .comparison-cell {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .comparison-header {
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--primary);
+        }
+
+        .comparison-value {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.6;
         }
 
         .checkmark {
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 20px;
+            color: var(--success);
+            font-size: 24px;
+        }
+
+        .crossmark {
+            color: var(--text-muted);
+            font-size: 24px;
         }
 
         /* Market Section */
-        .market-stats {
+        .market-opportunity {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            margin-top: 60px;
+            margin-top: 80px;
         }
 
-        .stat-card {
+        .market-card {
+            background: var(--bg-card);
+            padding: 48px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             text-align: center;
-            padding: 48px 32px;
-            background: var(--card-bg);
-            border-radius: 16px;
-            border: 2px solid var(--border);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .stat-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
+        .market-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .stat-number {
-            font-size: 56px;
+        .market-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .market-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .market-number {
+            font-size: 64px;
+            font-weight: 900;
+            font-family: 'Space Mono', monospace;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        .market-label {
+            font-size: 20px;
             font-weight: 700;
-            color: var(--primary);
-            font-family: 'JetBrains Mono', monospace;
             margin-bottom: 12px;
         }
 
-        .stat-label {
-            font-size: 18px;
-            color: var(--text-light);
-            font-weight: 500;
+        .market-description {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
         }
 
-        /* Differentiation Section */
-        .diff-grid {
+        /* Target Customer Section */
+        .target-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            margin-top: 60px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 80px;
         }
 
-        .diff-card {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 16px;
-            border-left: 4px solid var(--accent);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+        .target-main {
+            background: var(--bg-card);
+            padding: 48px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .diff-card h3 {
+        .target-main h3 {
+            font-size: 28px;
+            margin-bottom: 24px;
+            font-weight: 800;
+        }
+
+        .target-list {
+            list-style: none;
+        }
+
+        .target-list li {
+            padding: 16px 0 16px 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 16px;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .target-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 900;
+            font-size: 20px;
+        }
+
+        .target-callout {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(0, 217, 255, 0.1) 100%);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            padding: 48px;
+            border-radius: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .target-callout h4 {
             font-size: 24px;
             margin-bottom: 16px;
-            color: var(--primary);
+            font-weight: 800;
         }
 
-        .diff-card p {
-            color: var(--text-light);
+        .target-callout p {
+            font-size: 16px;
+            color: var(--text-secondary);
             line-height: 1.7;
         }
 
-        .vs-label {
-            display: inline-block;
-            background: rgba(0, 217, 192, 0.1);
-            color: var(--accent);
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
+        /* Onboarding Section */
+        .onboarding-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            margin-top: 80px;
+            position: relative;
         }
 
-        /* Team Section */
-        .team-grid {
+        .onboarding-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 15%;
+            right: 15%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent) 0%, var(--primary) 100%);
+            z-index: 0;
+        }
+
+        .onboarding-step {
+            background: var(--bg-card);
+            padding: 40px 32px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .onboarding-step:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 217, 255, 0.3);
+        }
+
+        .step-count {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 36px;
+            font-weight: 900;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .onboarding-step h4 {
+            font-size: 20px;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .onboarding-step p {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Outcomes Section */
+        .outcomes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 80px;
+        }
+
+        .outcome-card {
+            background: var(--bg-card);
+            padding: 48px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .outcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-3);
+        }
+
+        .outcome-number {
+            font-size: 64px;
+            font-weight: 900;
+            font-family: 'Space Mono', monospace;
+            background: var(--gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            line-height: 1;
+        }
+
+        .outcome-card h4 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .outcome-card p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Philosophy Section */
+        .philosophy-content {
+            max-width: 900px;
+            margin: 80px auto 0;
+            text-align: center;
+        }
+
+        .philosophy-quote {
+            font-size: 32px;
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 48px;
+            color: var(--text);
+        }
+
+        .philosophy-beliefs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
             margin-top: 60px;
         }
 
-        .team-member {
+        .belief-item {
             text-align: center;
+            padding: 32px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .team-photo {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-            margin: 0 auto 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .belief-icon {
             font-size: 48px;
-            color: white;
-            font-weight: 700;
-        }
-
-        .team-member h3 {
-            font-size: 22px;
-            margin-bottom: 8px;
-        }
-
-        .team-member .role {
-            color: var(--text-light);
-            font-size: 16px;
-        }
-
-        /* Investors Section */
-        .investor-section {
-            background: var(--primary);
-            color: white;
-        }
-
-        .investor-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .investor-content h2 {
-            color: white;
             margin-bottom: 24px;
         }
 
-        .investor-content p {
-            font-size: 20px;
-            margin-bottom: 40px;
-            color: rgba(255, 255, 255, 0.9);
+        .belief-item p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
 
-        .investor-features {
+        /* Investor Section */
+        .investor-section {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--bg) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .investor-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .investor-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .investor-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 32px;
-            margin-top: 60px;
-            text-align: left;
+            margin-top: 80px;
         }
 
-        .investor-feature {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 32px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        .investor-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .investor-feature h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: var(--accent);
+        .investor-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-8px);
         }
 
-        .investor-feature p {
+        .investor-icon {
+            font-size: 48px;
+            margin-bottom: 24px;
+        }
+
+        .investor-card h3 {
+            font-size: 22px;
+            margin-bottom: 16px;
+            font-weight: 800;
+        }
+
+        .investor-card p {
             font-size: 16px;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-secondary);
+            line-height: 1.7;
         }
 
         /* Contact Section */
+        .contact-wrapper {
+            max-width: 700px;
+            margin: 80px auto 0;
+        }
+
         .contact-form {
-            max-width: 600px;
-            margin: 60px auto 0;
-            background: var(--card-bg);
-            padding: 48px;
-            border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            background: var(--bg-card);
+            padding: 60px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
         }
 
         .form-group {
@@ -611,20 +1120,23 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--primary);
+            margin-bottom: 12px;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-secondary);
         }
 
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
-            padding: 14px 16px;
-            border: 2px solid var(--border);
-            border-radius: 8px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             font-size: 16px;
-            font-family: 'Archivo', sans-serif;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text);
             transition: all 0.3s ease;
         }
 
@@ -632,60 +1144,73 @@
         .form-group textarea:focus,
         .form-group select:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .form-group textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 140px;
         }
 
-        .submit-button {
+        .submit-btn {
             width: 100%;
-            background: var(--accent);
-            color: var(--primary);
-            padding: 16px;
+            background: var(--gradient-1);
+            color: white;
+            padding: 18px;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 700;
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
         }
 
-        .submit-button:hover {
-            background: var(--accent-dark);
+        .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 217, 192, 0.3);
+            box-shadow: 0 12px 40px rgba(255, 107, 53, 0.6);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         /* Footer */
         footer {
-            background: var(--primary);
-            color: white;
-            padding: 60px 0 30px;
+            background: var(--bg-light);
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 60px;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .footer-brand h3 {
-            font-size: 24px;
+            font-size: 28px;
+            font-weight: 800;
             margin-bottom: 16px;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .footer-brand p {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-muted);
             line-height: 1.7;
+            font-size: 15px;
         }
 
         .footer-links h4 {
             font-size: 16px;
-            margin-bottom: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
             color: var(--accent);
         }
 
@@ -694,92 +1219,66 @@
         }
 
         .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--text-secondary);
             text-decoration: none;
             display: block;
             padding: 8px 0;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            font-size: 15px;
         }
 
         .footer-links a:hover {
-            color: var(--accent);
+            color: var(--primary);
+            padding-left: 8px;
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255, 255, 255, 0.5);
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 14px;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 40px;
+            h1 { font-size: 48px; }
+            h2 { font-size: 36px; }
+            .hero { padding: 140px 0 80px; }
+            .hero-description { font-size: 18px; }
+            .stats-grid,
+            .problem-grid,
+            .tech-grid,
+            .market-opportunity,
+            .investor-grid,
+            .target-grid,
+            .outcomes-grid,
+            .philosophy-beliefs { 
+                grid-template-columns: 1fr;
             }
-
-            h2 {
-                font-size: 32px;
+            .onboarding-steps {
+                grid-template-columns: repeat(2, 1fr);
             }
-
-            .hero {
-                padding: 120px 0 80px;
+            .onboarding-steps::before {
+                display: none;
             }
-
-            .hero p {
-                font-size: 18px;
-            }
-
-            .solution-content,
-            .diff-grid {
+            .solution-showcase {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-
-            .market-stats {
+            .comparison-row {
                 grid-template-columns: 1fr;
+                gap: 16px;
             }
-
-            .investor-features {
-                grid-template-columns: 1fr;
-            }
-
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-
-            .nav-links {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            nav .nav-links {
                 display: none;
-            }
-        }
-
-        /* Animations */
-        .fade-in {
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
             }
         }
     </style>
@@ -805,7 +1304,16 @@
                 e.preventDefault();
                 console.log('Form submitted:', formData);
                 setSubmitted(true);
-                setTimeout(() => setSubmitted(false), 3000);
+                setTimeout(() => {
+                    setSubmitted(false);
+                    setFormData({
+                        name: '',
+                        email: '',
+                        organization: '',
+                        role: '',
+                        message: ''
+                    });
+                }, 3000);
             };
 
             const handleChange = (e) => {
@@ -820,15 +1328,15 @@
                     {/* Navigation */}
                     <nav>
                         <div className="container">
-                            <div className="logo">Clarify Health</div>
+                            <div className="logo">Clarity Health</div>
                             <ul className="nav-links">
                                 <li><a href="#problem">Problem</a></li>
                                 <li><a href="#solution">Solution</a></li>
+                                <li><a href="#technology">Technology</a></li>
                                 <li><a href="#market">Market</a></li>
-                                <li><a href="#team">Team</a></li>
                                 <li><a href="#investors">Investors</a></li>
                             </ul>
-                            <a href="#contact" className="cta-button">Get in Touch</a>
+                            <a href="#contact" className="cta-nav">Get Started</a>
                         </div>
                     </nav>
 
@@ -836,15 +1344,49 @@
                     <section className="hero">
                         <div className="container">
                             <div className="hero-content">
-                                <div className="hero-badge">Launching Spring 2026</div>
-                                <h1>Autonomous AI That Runs Your Insurance Workflow</h1>
-                                <p>
-                                    We're building agentic AI that manages the entire insurance lifecycle—from eligibility verification 
-                                    to claim resubmission—so healthcare providers get paid faster and focus on patient care.
+                                <div className="hero-badge">
+                                    <span className="pulse-dot"></span>
+                                    Launching Spring 2026
+                                </div>
+                                <h1>
+                                    <span className="hero-highlight">Agentic AI</span> That Runs Your Insurance Lifecycle End-to-End
+                                </h1>
+                                <p className="hero-description">
+                                    Stop losing revenue to insurance friction. Clarity Health deploys autonomous AI agents that manage eligibility, 
+                                    claims, denials, and reimbursement—learning and improving with every interaction. Get paid faster, reduce admin burden by 80%, 
+                                    and let your team focus on patient care.
                                 </p>
                                 <div className="hero-buttons">
-                                    <a href="#contact" className="button-primary">Schedule a Conversation</a>
-                                    <a href="#solution" className="button-secondary">See How It Works</a>
+                                    <a href="#contact" className="btn-primary">
+                                        Schedule a Demo →
+                                    </a>
+                                    <a href="#solution" className="btn-secondary">
+                                        See How It Works
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Stats Bar */}
+                    <section className="stats-bar">
+                        <div className="container">
+                            <div className="stats-grid">
+                                <div className="stat-item">
+                                    <div className="stat-number">60+</div>
+                                    <div className="stat-label">Days Average Payment Delay</div>
+                                </div>
+                                <div className="stat-item">
+                                    <div className="stat-number">18%</div>
+                                    <div className="stat-label">Claims Denied First Time</div>
+                                </div>
+                                <div className="stat-item">
+                                    <div className="stat-number">$496B</div>
+                                    <div className="stat-label">Annual Admin Waste</div>
+                                </div>
+                                <div className="stat-item">
+                                    <div className="stat-number">80%</div>
+                                    <div className="stat-label">Manual Work Eliminated</div>
                                 </div>
                             </div>
                         </div>
@@ -855,39 +1397,53 @@
                         <div className="container">
                             <div className="section-header">
                                 <div className="section-label">The Problem</div>
-                                <h2>Healthcare Providers Lose Billions to Insurance Friction</h2>
-                                <p>
-                                    Manual workflows, delayed payments, and denied claims drain resources from patient care. 
-                                    Current automation tools only solve fragments of the problem.
+                                <h2>Healthcare Providers Are Drowning in Insurance Admin</h2>
+                                <p className="section-description">
+                                    The current revenue cycle is broken. Manual workflows, fragmented automation tools, and insurer delays 
+                                    drain billions from healthcare organizations every year—resources that should be going to patient care.
                                 </p>
                             </div>
                             <div className="problem-grid">
                                 <div className="problem-card">
                                     <div className="problem-icon">⏱️</div>
-                                    <h3>Weeks of Payment Delays</h3>
+                                    <h3>Massive Payment Delays</h3>
                                     <p>
-                                        Clinics wait 30-60+ days for reimbursement while manually chasing claim statuses, 
-                                        calling insurers, and resubmitting documentation.
+                                        Clinics wait 30-90 days for reimbursement while staff manually chase claim statuses, 
+                                        call insurers for updates, and resubmit missing documentation. Every day of delay impacts cash flow and operations.
                                     </p>
-                                    <span className="stat">60+ days</span>
+                                    <span className="problem-stat">60-90 days</span>
+                                    <div className="problem-detail">
+                                        <strong>Real Cost:</strong>
+                                        <p>A 50-provider practice loses $250K+ annually to delayed payments and staff time spent on follow-ups.</p>
+                                    </div>
                                 </div>
                                 <div className="problem-card">
                                     <div className="problem-icon">❌</div>
                                     <h3>High Denial Rates</h3>
                                     <p>
-                                        15-20% of claims are denied on first submission, requiring expensive manual review, 
-                                        appeals, and resubmission workflows.
+                                        15-20% of claims are denied on first submission due to missing information, incorrect codes, 
+                                        or payer-specific requirements. Each denial requires expensive manual review, appeals preparation, 
+                                        and resubmission—often taking months to resolve.
                                     </p>
-                                    <span className="stat">15-20%</span>
+                                    <span className="problem-stat">15-20%</span>
+                                    <div className="problem-detail">
+                                        <strong>Real Cost:</strong>
+                                        <p>Appealing a single denial costs $25-50 in staff time. With thousands of claims monthly, costs compound rapidly.</p>
+                                    </div>
                                 </div>
                                 <div className="problem-card">
                                     <div className="problem-icon">💰</div>
                                     <h3>Administrative Waste</h3>
                                     <p>
-                                        Healthcare organizations spend $496B annually on billing and insurance administration—
-                                        resources that could go toward patient care.
+                                        U.S. healthcare organizations spend $496 billion annually on billing and insurance administration—
+                                        nearly 25% of total healthcare spending. Staff spend hours verifying eligibility, tracking authorizations, 
+                                        and coordinating with payers.
                                     </p>
-                                    <span className="stat">$496B</span>
+                                    <span className="problem-stat">$496B</span>
+                                    <div className="problem-detail">
+                                        <strong>Real Cost:</strong>
+                                        <p>The average clinic dedicates 15-25% of revenue to RCM operations—staff that could support clinical care instead.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -898,42 +1454,253 @@
                         <div className="container">
                             <div className="section-header">
                                 <div className="section-label">Our Solution</div>
-                                <h2>Agentic AI That Orchestrates the Full Insurance Lifecycle</h2>
-                                <p>
-                                    Unlike task-specific automation, our AI agents autonomously manage every step—making decisions, 
-                                    executing actions, and learning from outcomes.
+                                <h2>Autonomous AI Agents That Orchestrate the Full Insurance Lifecycle</h2>
+                                <p className="section-description">
+                                    Unlike task-specific automation tools, Clarity Health deploys true agentic AI that makes decisions, 
+                                    takes actions, and learns from outcomes—managing every step from eligibility to reimbursement without human intervention.
                                 </p>
                             </div>
-                            <div className="solution-content">
-                                <div className="solution-visual">
-                                    <div className="flow-diagram">
-                                        <div className="flow-step">🔍 Verify eligibility & benefits</div>
-                                        <div className="flow-arrow">↓</div>
-                                        <div className="flow-step">📋 Submit optimized claims</div>
-                                        <div className="flow-arrow">↓</div>
-                                        <div className="flow-step">📞 Track & communicate with insurers</div>
-                                        <div className="flow-arrow">↓</div>
-                                        <div className="flow-step">⚠️ Detect denials & initiate appeals</div>
-                                        <div className="flow-arrow">↓</div>
-                                        <div className="flow-step">✅ Secure reimbursement</div>
-                                    </div>
-                                </div>
-                                <div className="solution-text">
+                            <div className="solution-showcase">
+                                <div className="solution-content">
                                     <h3>True Autonomy, Not Just Automation</h3>
                                     <p>
-                                        Our agentic AI doesn't just automate tasks—it orchestrates entire workflows. It decides the next best 
-                                        action, executes insurer communications, escalates intelligently, and improves strategies over time.
+                                        Most RCM tools automate individual tasks—coding assistance, prior auth checks, denial alerts. 
+                                        But someone still has to coordinate everything, make decisions, and take action.
                                     </p>
                                     <p>
-                                        Think of it as a digital claims specialist that operates 24/7, learning from every interaction to 
-                                        maximize reimbursement and minimize delays.
+                                        <strong>Clarity Health is different.</strong> Our AI agents don't just assist—they operate. 
+                                        They decide when to escalate to a supervisor, which evidence to submit for appeals, 
+                                        how to communicate with specific payers, and which strategies work best for each scenario.
                                     </p>
-                                    <ul className="feature-list">
-                                        <li><span className="checkmark">✓</span> End-to-end lifecycle management, not fragmented tasks</li>
-                                        <li><span className="checkmark">✓</span> Intelligent decision-making and escalation</li>
-                                        <li><span className="checkmark">✓</span> Self-improving through reinforcement learning</li>
-                                        <li><span className="checkmark">✓</span> Clinical + financial context integration</li>
+                                    <p>
+                                        Think of it as hiring a 24/7 claims specialist who learns from every interaction, 
+                                        optimizes strategies over time, and never takes a day off.
+                                    </p>
+                                    <div className="feature-highlights">
+                                        <div className="feature-item">
+                                            <div className="feature-icon">🔍</div>
+                                            <div className="feature-text">
+                                                <h4>Intelligent Eligibility Verification</h4>
+                                                <p>Real-time checks across multiple payers with automatic benefit extraction and policy context</p>
+                                            </div>
+                                        </div>
+                                        <div className="feature-item">
+                                            <div className="feature-icon">🤖</div>
+                                            <div className="feature-text">
+                                                <h4>Autonomous Insurer Communication</h4>
+                                                <p>AI agents call, message, and submit evidence to payers without human orchestration</p>
+                                            </div>
+                                        </div>
+                                        <div className="feature-item">
+                                            <div className="feature-icon">📊</div>
+                                            <div className="feature-text">
+                                                <h4>Self-Improving Appeals</h4>
+                                                <p>Learns which evidence and strategies work best for each payer and denial type</p>
+                                            </div>
+                                        </div>
+                                        <div className="feature-item">
+                                            <div className="feature-icon">⚡</div>
+                                            <div className="feature-text">
+                                                <h4>Proactive Denial Prevention</h4>
+                                                <p>Clinical + financial context integration catches issues before claims are submitted</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="workflow-visual">
+                                    <div className="workflow-step">
+                                        <div className="step-number">1</div>
+                                        <div className="workflow-step-title">🔍 Verify Eligibility</div>
+                                        <p className="workflow-step-desc">Real-time payer checks with benefit extraction and policy context</p>
+                                    </div>
+                                    <div className="workflow-arrow">↓</div>
+                                    <div className="workflow-step">
+                                        <div className="step-number">2</div>
+                                        <div className="workflow-step-title">📋 Optimize & Submit</div>
+                                        <p className="workflow-step-desc">AI reviews clinical documentation and submits optimized claims</p>
+                                    </div>
+                                    <div className="workflow-arrow">↓</div>
+                                    <div className="workflow-step">
+                                        <div className="step-number">3</div>
+                                        <div className="workflow-step-title">📞 Track & Communicate</div>
+                                        <p className="workflow-step-desc">Autonomous follow-up with insurers via calls, portals, and messages</p>
+                                    </div>
+                                    <div className="workflow-arrow">↓</div>
+                                    <div className="workflow-step">
+                                        <div className="step-number">4</div>
+                                        <div className="workflow-step-title">⚠️ Detect & Appeal</div>
+                                        <p className="workflow-step-desc">Instant denial identification with intelligent evidence-based appeals</p>
+                                    </div>
+                                    <div className="workflow-arrow">↓</div>
+                                    <div className="workflow-step">
+                                        <div className="step-number">5</div>
+                                        <div className="workflow-step-title">✅ Secure Payment</div>
+                                        <p className="workflow-step-desc">Confirmation, reconciliation, and continuous workflow improvement</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Technology Section */}
+                    <section id="technology">
+                        <div className="container">
+                            <div className="section-header">
+                                <div className="section-label">Technology</div>
+                                <h2>Built on Advanced AI and Reinforcement Learning</h2>
+                                <p className="section-description">
+                                    Our platform combines large language models, reinforcement learning, and healthcare domain expertise 
+                                    to create agents that not only automate tasks but optimize strategies over time.
+                                </p>
+                            </div>
+                            <div className="tech-grid">
+                                <div className="tech-card">
+                                    <div className="tech-icon">🧠</div>
+                                    <h3>Agentic AI Architecture</h3>
+                                    <p>
+                                        Our agents use a multi-layered decision framework that evaluates claim status, payer behavior patterns, 
+                                        and clinical context to determine the optimal next action—from simple follow-ups to complex appeal strategies.
+                                    </p>
+                                    <ul className="tech-details">
+                                        <li>Multi-step reasoning for complex workflows</li>
+                                        <li>Context-aware decision making</li>
+                                        <li>Intelligent escalation protocols</li>
+                                        <li>Real-time strategy adaptation</li>
                                     </ul>
+                                </div>
+                                <div className="tech-card">
+                                    <div className="tech-icon">📈</div>
+                                    <h3>Reinforcement Learning</h3>
+                                    <p>
+                                        Unlike static automation, our agents learn from outcomes. When an appeal succeeds or fails, 
+                                        the system updates its policy to improve future performance—optimizing for faster payments and higher approval rates.
+                                    </p>
+                                    <ul className="tech-details">
+                                        <li>Success/failure pattern recognition</li>
+                                        <li>Payer-specific strategy optimization</li>
+                                        <li>Continuous improvement cycles</li>
+                                        <li>Self-tuning appeal frameworks</li>
+                                    </ul>
+                                </div>
+                                <div className="tech-card">
+                                    <div className="tech-icon">🔗</div>
+                                    <h3>Clinical + Financial Integration</h3>
+                                    <p>
+                                        Most RCM tools only see billing data. We integrate clinical context—procedure notes, diagnosis codes, 
+                                        treatment necessity evidence—to proactively prevent denials and strengthen appeals.
+                                    </p>
+                                    <ul className="tech-details">
+                                        <li>Clinical documentation analysis</li>
+                                        <li>Medical necessity verification</li>
+                                        <li>CPT/ICD code optimization</li>
+                                        <li>Evidence-based appeal generation</li>
+                                    </ul>
+                                </div>
+                                <div className="tech-card">
+                                    <div className="tech-icon">🔒</div>
+                                    <h3>HIPAA-Compliant Infrastructure</h3>
+                                    <p>
+                                        Healthcare data security is non-negotiable. Our platform is built with end-to-end encryption, 
+                                        audit logging, access controls, and compliance frameworks that meet HIPAA, HITRUST, and SOC 2 requirements.
+                                    </p>
+                                    <ul className="tech-details">
+                                        <li>End-to-end encryption at rest and in transit</li>
+                                        <li>Role-based access controls</li>
+                                        <li>Complete audit trails</li>
+                                        <li>PHI data isolation and protection</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Comparison Section */}
+                    <section id="comparison" style={{background: 'var(--bg-light)'}}>
+                        <div className="container">
+                            <div className="section-header">
+                                <div className="section-label">Competitive Edge</div>
+                                <h2>How We're Different From Existing RCM Solutions</h2>
+                                <p className="section-description">
+                                    Companies like AKASA, Candid Health, and RapidClaims automate specific tasks. 
+                                    We orchestrate the entire workflow with true agentic intelligence.
+                                </p>
+                            </div>
+                            <div className="comparison-table">
+                                <div className="comparison-row">
+                                    <div className="comparison-cell">
+                                        <span className="comparison-header">Capability</span>
+                                    </div>
+                                    <div className="comparison-cell">
+                                        <span className="comparison-header">Traditional RCM</span>
+                                    </div>
+                                    <div className="comparison-cell">
+                                        <span className="comparison-header">Clarity Health</span>
+                                    </div>
+                                </div>
+                                <div className="comparison-row">
+                                    <div className="comparison-cell">
+                                        <strong>End-to-End Orchestration</strong>
+                                    </div>
+                                    <div className="comparison-cell">
+                                        <span className="crossmark">×</span>
+                                        <p className="comparison-value">Automates individual tasks, requires human coordination</p>
+                                    </div>
+                                    <div className="comparison-cell">
+                                        <span className="checkmark">✓</span>
+                                        <p className="comparison-value">Full lifecycle management without human intervention</p>
+                                    </div>
+                                </div>
+                                <div className="comparison-row">
+                                    <div className="comparison-cell">
+                                        <strong>Decision Making</strong>
+                                    </div>
+                                    <div className="comparison-cell">
+                                        <span className="crossmark">×</span>
+                                        <p className="comparison-value">Rule-based logic, surfaces insights for humans to act on</p>
+                                    </div>
+                                    <div className="comparison-cell">
+                                        <span className="checkmark">✓</span>
+                                        <p className="comparison-value">Autonomous agents that decide and execute actions</p>
+                                    </div>
+                                </div>
+                                <div className="comparison-row">
+                                    <div className="comparison-cell">
+                                        <strong>Learning & Improvement</strong>
+                                    </div>
+                                    <div className="comparison-cell">
+                                        <span className="crossmark">×</span>
+                                        <p className="comparison-value">Static automation, requires manual updates</p>
+                                    </div>
+                                    <div className="comparison-cell">
+                                        <span className="checkmark">✓</span>
+                                        <p className="comparison-value">Self-improving through reinforcement learning</p>
+                                    </div>
+                                </div>
+                                <div className="comparison-row">
+                                    <div className="comparison-cell">
+                                        <strong>Clinical Context Integration</strong>
+                                    </div>
+                                    <div className="comparison-cell">
+                                        <span className="crossmark">×</span>
+                                        <p className="comparison-value">Financial data only, limited clinical awareness</p>
+                                    </div>
+                                    <div className="comparison-cell">
+                                        <span className="checkmark">✓</span>
+                                        <p className="comparison-value">Deep clinical + financial context for smarter decisions</p>
+                                    </div>
+                                </div>
+                                <div className="comparison-row">
+                                    <div className="comparison-cell">
+                                        <strong>Integration Complexity</strong>
+                                    </div>
+                                    <div className="comparison-cell">
+                                        <span className="crossmark">×</span>
+                                        <p className="comparison-value">Enterprise-heavy, long onboarding cycles</p>
+                                    </div>
+                                    <div className="comparison-cell">
+                                        <span className="checkmark">✓</span>
+                                        <p className="comparison-value">Modular setup, quick pilots, SMB-friendly</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -944,143 +1711,250 @@
                         <div className="container">
                             <div className="section-header">
                                 <div className="section-label">Market Opportunity</div>
-                                <h2>Massive Addressable Market in Healthcare Operations</h2>
-                                <p>
-                                    Revenue Cycle Management is a $14B+ industry growing at 12% annually. The shift to AI-powered 
-                                    automation is accelerating as providers seek margin improvement.
+                                <h2>Massive, Growing Market with Clear Pain Points</h2>
+                                <p className="section-description">
+                                    Revenue Cycle Management is a $14B+ industry growing at 12% annually. 
+                                    The shift to AI-powered automation is accelerating as margin pressure intensifies.
                                 </p>
                             </div>
-                            <div className="market-stats">
-                                <div className="stat-card">
-                                    <div className="stat-number">$14B</div>
-                                    <div className="stat-label">RCM Market Size</div>
+                            <div className="market-opportunity">
+                                <div className="market-card">
+                                    <div className="market-number">$14B</div>
+                                    <div className="market-label">RCM Market Size</div>
+                                    <p className="market-description">
+                                        Total addressable market for revenue cycle management software and services in the U.S.
+                                    </p>
                                 </div>
-                                <div className="stat-card">
-                                    <div className="stat-number">12%</div>
-                                    <div className="stat-label">Annual Growth Rate</div>
+                                <div className="market-card">
+                                    <div className="market-number">12%</div>
+                                    <div className="market-label">Annual Growth Rate</div>
+                                    <p className="market-description">
+                                        Market expanding as healthcare organizations seek automation to combat rising operational costs
+                                    </p>
                                 </div>
-                                <div className="stat-card">
-                                    <div className="stat-number">$496B</div>
-                                    <div className="stat-label">Admin Cost Burden</div>
+                                <div className="market-card">
+                                    <div className="market-number">$496B</div>
+                                    <div className="market-label">Admin Cost Burden</div>
+                                    <p className="market-description">
+                                        Annual U.S. healthcare spending on billing and insurance administration—our target for reduction
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    {/* Differentiation Section */}
-                    <section id="differentiation">
+                    {/* Target Customer Section - NEW */}
+                    <section id="target" style={{background: 'var(--bg-light)'}}>
                         <div className="container">
                             <div className="section-header">
-                                <div className="section-label">Why We're Different</div>
-                                <h2>How We Stand Apart From Existing Solutions</h2>
-                                <p>
-                                    Current RCM tools automate tasks in isolation. We orchestrate the entire workflow with true agentic intelligence.
+                                <div className="section-label">Built For</div>
+                                <h2>Clinics That Can't Afford Insurance Friction</h2>
+                                <p className="section-description">
+                                    Clarity Health is designed for small to mid-sized healthcare providers who feel the pain of insurance 
+                                    complexity most acutely—but have the least capacity to manage it.
                                 </p>
                             </div>
-                            <div className="diff-grid">
-                                <div className="diff-card">
-                                    <div className="vs-label">Traditional RCM</div>
-                                    <h3>Task Automation</h3>
-                                    <p>
-                                        Companies like AKASA, Candid Health, and RapidClaims automate specific steps—coding, 
-                                        prior auth checks, denial alerts. But coordination still requires human oversight.
-                                    </p>
+                            <div className="target-grid">
+                                <div className="target-main">
+                                    <h3>We Work Best For:</h3>
+                                    <ul className="target-list">
+                                        <li>Independent primary care and specialty clinics</li>
+                                        <li>Multi-location outpatient practices</li>
+                                        <li>Behavioral health and therapy groups</li>
+                                        <li>Ambulatory surgery centers</li>
+                                        <li>Clinics billing across multiple payers and plans</li>
+                                    </ul>
                                 </div>
-                                <div className="diff-card">
-                                    <div className="vs-label">Clarify Health</div>
-                                    <h3>Full Lifecycle Orchestration</h3>
+                                <div className="target-callout">
+                                    <h4>Enterprise-Grade Intelligence Without Enterprise Overhead</h4>
                                     <p>
-                                        Our AI agents manage the complete workflow autonomously—making decisions, executing communications, 
-                                        and learning from outcomes without human intervention at every step.
-                                    </p>
-                                </div>
-                                <div className="diff-card">
-                                    <div className="vs-label">Traditional RCM</div>
-                                    <h3>Rules-Based Logic</h3>
-                                    <p>
-                                        Most tools use static automation rules or simple ML classification. They surface insights 
-                                        but don't act on behalf of providers.
-                                    </p>
-                                </div>
-                                <div className="diff-card">
-                                    <div className="vs-label">Clarify Health</div>
-                                    <h3>Learning Agents</h3>
-                                    <p>
-                                        We deploy reinforcement learning agents that refine strategies based on success patterns, 
-                                        learning which evidence and appeals work best for specific payers.
+                                        These organizations are too complex for manual processes—and too resource-constrained for 
+                                        enterprise RCM solutions. Clarity Health gives them enterprise-grade intelligence without enterprise overhead.
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    {/* Team Section */}
-                    <section id="team">
+                    {/* Onboarding Section - NEW */}
+                    <section id="onboarding">
                         <div className="container">
                             <div className="section-header">
-                                <div className="section-label">Team</div>
-                                <h2>Building at the Intersection of AI & Healthcare</h2>
-                                <p>
-                                    We're assembling a team with deep expertise in machine learning, healthcare operations, 
-                                    and building scalable systems. Based in Boston's innovation ecosystem.
+                                <div className="section-label">Getting Started</div>
+                                <h2>Up and Running in Weeks, Not Months</h2>
+                                <p className="section-description">
+                                    Unlike traditional RCM platforms, Clarity Health is built for fast pilots and incremental adoption. 
+                                    No rip-and-replace. No long enterprise rollouts. Just measurable impact—fast.
                                 </p>
                             </div>
-                            <div className="team-grid">
-                                <div className="team-member">
-                                    <div className="team-photo">?</div>
-                                    <h3>Founder</h3>
-                                    <p className="role">CEO & Technical Lead</p>
+                            <div className="onboarding-steps">
+                                <div className="onboarding-step">
+                                    <div className="step-count">1</div>
+                                    <h4>Connect Systems</h4>
+                                    <p>Link to your billing and EHR systems with minimal configuration</p>
                                 </div>
-                                <div className="team-member">
-                                    <div className="team-photo">?</div>
-                                    <h3>Open Position</h3>
-                                    <p className="role">Head of Product</p>
+                                <div className="onboarding-step">
+                                    <div className="step-count">2</div>
+                                    <h4>Select Workflow</h4>
+                                    <p>Choose one workflow to automate first—eligibility, tracking, or denials</p>
                                 </div>
-                                <div className="team-member">
-                                    <div className="team-photo">?</div>
-                                    <h3>Open Position</h3>
-                                    <p className="role">Healthcare Ops Lead</p>
+                                <div className="onboarding-step">
+                                    <div className="step-count">3</div>
+                                    <h4>Deploy Agents</h4>
+                                    <p>Launch agents alongside your existing processes</p>
+                                </div>
+                                <div className="onboarding-step">
+                                    <div className="step-count">4</div>
+                                    <h4>Scale Up</h4>
+                                    <p>Expand coverage as confidence and ROI grow</p>
                                 </div>
                             </div>
                         </div>
                     </section>
 
-                    {/* Investors Section */}
+                    {/* Why Now Section - NEW */}
+                    <section id="why-now" style={{background: 'var(--bg-light)'}}>
+                        <div className="container">
+                            <div className="section-header">
+                                <div className="section-label">Timing</div>
+                                <h2>Why This Hasn't Been Solved—Until Now</h2>
+                                <p className="section-description">
+                                    Healthcare insurance workflows have resisted automation for decades because they require 
+                                    multi-step reasoning, context across clinical and financial systems, and adaptive strategies.
+                                </p>
+                            </div>
+                            <div style={{maxWidth: '900px', margin: '60px auto 0', textAlign: 'center'}}>
+                                <p style={{fontSize: '20px', color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: '40px'}}>
+                                    Until recently, software could automate tasks—but not decisions. 
+                                    Advances in large language models, reinforcement learning, and agentic systems now make 
+                                    true workflow orchestration possible.
+                                </p>
+                                <h3 style={{fontSize: '32px', fontWeight: 800, color: 'var(--primary)'}}>
+                                    Clarity Health exists because the technology finally caught up to the problem.
+                                </h3>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Outcomes Section - NEW */}
+                    <section id="outcomes">
+                        <div className="container">
+                            <div className="section-header">
+                                <div className="section-label">Expected Impact</div>
+                                <h2>What Clinics See With Clarity Health</h2>
+                                <p className="section-description">
+                                    In early pilots and simulations, clinics using agentic insurance workflows see transformative improvements. 
+                                    As agents learn payer-specific strategies, performance continues to improve over time.
+                                </p>
+                            </div>
+                            <div className="outcomes-grid">
+                                <div className="outcome-card">
+                                    <div className="outcome-number">30-50%</div>
+                                    <h4>Faster Reimbursement Cycles</h4>
+                                    <p>
+                                        Autonomous tracking and follow-up eliminate delays. Claims that previously took 60-90 days 
+                                        to close now resolve in 30-45 days.
+                                    </p>
+                                </div>
+                                <div className="outcome-card">
+                                    <div className="outcome-number">80%+</div>
+                                    <h4>Less Manual Follow-Up Work</h4>
+                                    <p>
+                                        Staff no longer spend hours calling insurers or checking portals. 
+                                        Agents handle the heavy lifting autonomously.
+                                    </p>
+                                </div>
+                            </div>
+                            <div style={{textAlign: 'center', marginTop: '60px'}}>
+                                <p style={{fontSize: '20px', color: 'var(--text-secondary)', fontStyle: 'italic'}}>
+                                    This isn't static automation—it compounds. Performance improves with every claim.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Philosophy Section - NEW */}
+                    <section id="philosophy" style={{background: 'var(--bg-light)'}}>
+                        <div className="container">
+                            <div className="section-header">
+                                <div className="section-label">Our Philosophy</div>
+                                <h2>Why We're Building This</h2>
+                            </div>
+                            <div className="philosophy-content">
+                                <p className="philosophy-quote">
+                                    Healthcare teams shouldn't have to fight insurance companies to get paid for care they already delivered.
+                                </p>
+                                <div className="philosophy-beliefs">
+                                    <div className="belief-item">
+                                        <div className="belief-icon">⚡</div>
+                                        <p>
+                                            <strong>Administrative work should scale with software, not people</strong>
+                                        </p>
+                                    </div>
+                                    <div className="belief-item">
+                                        <div className="belief-icon">🤖</div>
+                                        <p>
+                                            <strong>AI should operate systems—not just assist users</strong>
+                                        </p>
+                                    </div>
+                                    <div className="belief-item">
+                                        <div className="belief-icon">💡</div>
+                                        <p>
+                                            <strong>Providers deserve transparency, control, and predictable revenue</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                                <p style={{fontSize: '22px', marginTop: '60px', color: 'var(--text-secondary)'}}>
+                                    Clarity Health exists to remove friction—not add another tool to manage.
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    {/* Investor Section */}
                     <section id="investors" className="investor-section">
                         <div className="container">
                             <div className="investor-content">
-                                <div className="section-label">For Investors</div>
-                                <h2>Partner With Us to Transform Healthcare Operations</h2>
-                                <p>
-                                    We're raising a seed round to build our MVP, pilot with early customers, and scale our agentic AI platform. 
-                                    Seeking partners familiar with Boston's healthcare and AI ecosystem.
-                                </p>
-                                <div className="investor-features">
-                                    <div className="investor-feature">
-                                        <h3>🎯 Clear GTM Strategy</h3>
+                                <div className="section-header">
+                                    <div className="section-label">For Investors</div>
+                                    <h2>Partner With Us to Transform Healthcare Operations</h2>
+                                    <p className="section-description">
+                                        We're raising a seed round to build our MVP, pilot with early customers in Massachusetts, 
+                                        and scale our agentic AI platform. Seeking partners familiar with Boston's healthcare and AI ecosystem.
+                                    </p>
+                                </div>
+                                <div className="investor-grid">
+                                    <div className="investor-card">
+                                        <div className="investor-icon">🎯</div>
+                                        <h3>Clear Go-To-Market</h3>
                                         <p>
                                             Targeting small to mid-size clinics in Massachusetts first—low integration friction, 
-                                            quick pilots, fast iteration cycles.
+                                            quick pilots, fast iteration cycles. Our modular approach allows rapid deployment without 
+                                            enterprise-length sales cycles.
                                         </p>
                                     </div>
-                                    <div className="investor-feature">
-                                        <h3>🧠 Technical Moat</h3>
+                                    <div className="investor-card">
+                                        <div className="investor-icon">🧠</div>
+                                        <h3>Technical Moat</h3>
                                         <p>
                                             Proprietary reinforcement learning framework for multi-step insurance workflows. 
-                                            Learning agents that improve with every claim.
+                                            Our agents improve with every claim processed, creating a defensible advantage that compounds over time.
                                         </p>
                                     </div>
-                                    <div className="investor-feature">
-                                        <h3>📈 Proven Market Need</h3>
+                                    <div className="investor-card">
+                                        <div className="investor-icon">📈</div>
+                                        <h3>Proven Market Need</h3>
                                         <p>
-                                            $496B admin cost problem. Providers actively seeking AI automation. Incumbents 
-                                            leave workflow orchestration gaps unaddressed.
+                                            $496B administrative cost problem. Providers actively seeking AI automation. 
+                                            Incumbents leave critical workflow orchestration gaps unaddressed—our opportunity to capture significant market share.
                                         </p>
                                     </div>
                                 </div>
-                                <a href="#contact" className="button-primary" style={{marginTop: '40px', display: 'inline-block'}}>
-                                    Schedule an Investor Meeting
-                                </a>
+                                <div style={{textAlign: 'center', marginTop: '60px'}}>
+                                    <a href="#contact" className="btn-primary" style={{fontSize: '18px', padding: '20px 48px'}}>
+                                        Schedule an Investor Meeting
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -1091,72 +1965,71 @@
                             <div className="section-header">
                                 <div className="section-label">Get in Touch</div>
                                 <h2>Let's Start a Conversation</h2>
-                                <p>
-                                    Whether you're a healthcare provider, potential partner, or investor, we'd love to hear from you.
+                                <p className="section-description">
+                                    Whether you're a healthcare provider, potential partner, or investor interested in transforming revenue cycle operations, 
+                                    we'd love to hear from you.
                                 </p>
                             </div>
-                            <form className="contact-form" onSubmit={handleSubmit}>
-                                <div className="form-group">
-                                    <label htmlFor="name">Name *</label>
-                                    <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        required
-                                        value={formData.name}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="email">Email *</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        required
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="organization">Organization</label>
-                                    <input
-                                        type="text"
-                                        id="organization"
-                                        name="organization"
-                                        value={formData.organization}
-                                        onChange={handleChange}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="role">I am a... *</label>
-                                    <select
-                                        id="role"
-                                        name="role"
-                                        required
-                                        value={formData.role}
-                                        onChange={handleChange}
-                                    >
-                                        <option value="">Select...</option>
-                                        <option value="provider">Healthcare Provider</option>
-                                        <option value="investor">Investor</option>
-                                        <option value="partner">Potential Partner</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="message">Message</label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        value={formData.message}
-                                        onChange={handleChange}
-                                    ></textarea>
-                                </div>
-                                <button type="submit" className="submit-button">
-                                    {submitted ? '✓ Message Sent!' : 'Send Message'}
-                                </button>
-                            </form>
+                            <div className="contact-wrapper">
+                                <form className="contact-form" action="https://formspree.io/f/mlgewqzd" method="POST">
+                                    <div className="form-row">
+                                        <div className="form-group">
+                                            <label htmlFor="name">Name *</label>
+                                            <input
+                                                type="text"
+                                                id="name"
+                                                name="name"
+                                                required
+                                                placeholder="John Smith"
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label htmlFor="email">Email *</label>
+                                            <input
+                                                type="email"
+                                                id="email"
+                                                name="email"
+                                                required
+                                                placeholder="john@example.com"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="organization">Organization</label>
+                                        <input
+                                            type="text"
+                                            id="organization"
+                                            name="organization"
+                                            placeholder="Your clinic or firm name"
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="role">I am a... *</label>
+                                        <select
+                                            id="role"
+                                            name="role"
+                                            required
+                                        >
+                                            <option value="">Select your role</option>
+                                            <option value="provider">Healthcare Provider / Administrator</option>
+                                            <option value="investor">Investor / VC</option>
+                                            <option value="partner">Potential Partner</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-group">
+                                        <label htmlFor="message">Message</label>
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            placeholder="Tell us about your interest in Clarity Health..."
+                                        ></textarea>
+                                    </div>
+                                    <button type="submit" className="submit-btn">
+                                        Send Message
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     </section>
 
@@ -1165,10 +2038,10 @@
                         <div className="container">
                             <div className="footer-content">
                                 <div className="footer-brand">
-                                    <h3>Clarify Health</h3>
+                                    <h3>Clarity Health</h3>
                                     <p>
-                                        Autonomous AI that manages the full insurance lifecycle for healthcare providers. 
-                                        Building the future of revenue cycle operations.
+                                        Autonomous AI agents that manage the full insurance lifecycle for healthcare providers. 
+                                        Building the future of revenue cycle operations with agentic intelligence.
                                     </p>
                                 </div>
                                 <div className="footer-links">
@@ -1176,21 +2049,29 @@
                                     <ul>
                                         <li><a href="#problem">Problem</a></li>
                                         <li><a href="#solution">Solution</a></li>
-                                        <li><a href="#team">Team</a></li>
-                                        <li><a href="#contact">Contact</a></li>
+                                        <li><a href="#technology">Technology</a></li>
+                                        
+                                    </ul>
+                                </div>
+                                <div className="footer-links">
+                                    <h4>Investors</h4>
+                                    <ul>
+                                        <li><a href="#investors">Why Invest</a></li>
+                                        <li><a href="#market">Market Size</a></li>
+                                        <li><a href="#contact">Schedule Meeting</a></li>
                                     </ul>
                                 </div>
                                 <div className="footer-links">
                                     <h4>Connect</h4>
                                     <ul>
-                                        <li><a href="mailto:hello@clarifyhealth.ai">Email Us</a></li>
-                                        <li><a href="#investors">For Investors</a></li>
+                                        <li><a href="mailto:hello@clarityhealth.ai">hello@clarityhealth.ai</a></li>
                                         <li><a href="#contact">Request Demo</a></li>
+                                        <li><a href="#contact">Join Our Team</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div className="footer-bottom">
-                                <p>© 2026 Clarify Health. All rights reserved. | Based in Boston, MA</p>
+                                <p>© 2026 Clarity Health. All rights reserved. | Based in Boston, MA | Built for healthcare providers who deserve better.</p>
                             </div>
                         </div>
                     </footer>
